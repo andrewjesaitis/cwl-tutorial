@@ -1,0 +1,4 @@
+in:
+  class: File
+  path: 1kg/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf
+genome: hg19

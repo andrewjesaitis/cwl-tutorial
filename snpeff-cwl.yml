@@ -1,0 +1,31 @@
+#!/usr/bin/env cwl-runner
+
+class: CommandLineTool
+
+cwlVersion: v1.0
+
+requirements:
+  - class: DockerRequirement
+    dockerImageId: andrewjesaitis/snpeff
+
+inputs:
+  genome:
+    type: string
+    inputBinding:
+      position: 1
+  in:
+    type: File
+    inputBinding:
+      position: 2
+    doc: VCF file to annotate
+
+outputs:
+  output:
+    type: stdout
+
+stdout: output.txt
+
+baseCommand: []
+
+doc: |
+  Annotate variants provided in a VCF using SnpEff
