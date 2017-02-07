@@ -1,31 +1,39 @@
 #!/usr/bin/env cwl-runner
 
-class: CommandLineTool
+class: Workflow
 
-cwlVersion: v1.0
-
-requirements:
-  - class: DockerRequirement
-    dockerImageId: andrewjesaitis/snpeff
+cwlVersion: cwl:draft-3
 
 inputs:
-  genome:
+  - id: genome
     type: string
-    inputBinding:
-      position: 1
-  in:
+  - id: in
     type: File
-    inputBinding:
-      position: 2
-    doc: VCF file to annotate
+    description: gzip VCF file to annotate
 
 outputs:
-  output:
-    type: stdout
+  - id: ann.vcf
+    type: File
+    source: "#snpeff/output"
 
-stdout: output.txt
+steps:
+  - id: gunzip
+    run: gunzip.cwl
+    inputs:
+      - id: gzipfile
+        source: "#in"
+    outputs:
+      - id: unzipped_vcf
 
-baseCommand: []
+  - id: snpeff
+    run: snpeff.cwl
+    inputs:
+      - id: input_vcf
+        source: "#cut/no_sample_vcf"
+      - id: genome
+        source: "#genome"
+    outputs:
+      - id: output
 
-doc: |
-  Annotate variants provided in a VCF using SnpEff
+description: |
+  Annotate variants provided in a gziped VCF using SnpEff
