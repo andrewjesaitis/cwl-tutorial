@@ -8,6 +8,8 @@ RUN rm snpEff_latest_core.zip
 
 RUN cp snpEff/snpEff.jar .
 RUN cp snpEff/snpEff.config .
+WORKDIR /snpEff
+RUN java -jar snpEff.jar download -v hg19
 
 COPY start.sh /opt/snpeff/
 ENTRYPOINT ["sh", "/opt/snpeff/start.sh"]

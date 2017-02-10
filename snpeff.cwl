@@ -2,27 +2,35 @@
 
 class: CommandLineTool
 
-cwlVersion: cwl:draft-3
+cwlVersion: v1.0
+
+baseCommand: []
 
 requirements:
   - class: DockerRequirement
     dockerImageId: andrewjesaitis/snpeff
 
 inputs:
-  - id: genome
+  genome:
     type: string
     inputBinding:
       position: 1
-  - id: input_vcf
+  input_vcf:
     type: File
     inputBinding:
       position: 2
-    description: VCF file to annotate
+    doc: VCF file to annotate
 
 outputs:
-  - id: output
+  output:
     type: stdout
+  stats:
+    type: File
+    outputBinding:
+      glob: "*.html"
+  genes:
+    type: File
+    outputBinding:
+      glob: "*.txt"
 
-stdout: output.txt
-
-baseCommand: []
+stdout: output.vcf

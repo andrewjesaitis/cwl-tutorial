@@ -1,0 +1,4 @@
+infile:
+  class: File
+  path: test/chr22.truncated.nosamples.1kg.vcf.gz
+genome: hg19

@@ -12,8 +12,6 @@ inputs:
 
 outputs:
   unzipped_vcf:
-    type: File
-    outputBinding:
-      glob: out.vcf
+    type: stdout
 
-stdout: out.vcf
+stdout: unzipped.vcf
