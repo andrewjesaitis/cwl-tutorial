@@ -11,6 +11,17 @@ inputs:
     type: File
     doc: gzip VCF file to annotate
 
+outputs:
+  outfile:
+    type: File
+    outputSource: snpeff/output
+  statsfile:
+    type: File
+    outputSource: snpeff/stats
+  genesfile:
+    type: File
+    outputSource: snpeff/genes
+
 steps:
   gunzip:
     run: gunzip.cwl
