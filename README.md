@@ -8,5 +8,5 @@ git clone git@github:andrewjesaitis/cwl-tutorial
 cd cwl-tutorial
 docker build --tag=andrewjesaitis/snpeff .
 pip install cwltool
-cwltool snpff-workflow.cwl 1kg-job.yml
+cwltool snpeff-workflow.cwl 1kg-job.yml
 ```
